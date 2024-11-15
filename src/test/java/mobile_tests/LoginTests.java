@@ -5,7 +5,7 @@ import dto.UserDto;
 import org.testng.annotations.Test;
 import screens.LoginScreen;
 
-public class LoginTest extends AppiumConfig {
+public class LoginTests extends AppiumConfig {
 
     @Test
     public void loginPositiveTest() {
@@ -18,8 +18,5 @@ public class LoginTest extends AppiumConfig {
                 .clickLoginButtonSuccess()
                 .allowAccessLocation()
                 .allowPictures();
-
-
     }
-
 }

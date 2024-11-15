@@ -24,7 +24,7 @@ public class BaseScreen {
         }
     }
 
-    public boolean textInElementPresent(AndroidElement element, String text, int time) {
+    public boolean isTextInElementPresent(AndroidElement element, String text, int time) {
         try {
             return new WebDriverWait(driver, time)
                     .until(ExpectedConditions.textToBePresentInElement(element, text));

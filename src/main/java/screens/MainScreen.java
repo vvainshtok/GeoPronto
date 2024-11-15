@@ -10,30 +10,53 @@ public class MainScreen extends BaseScreen {
     }
 
     @FindBy(id = "com.android.packageinstaller:id/permission_message")
-    AndroidElement permissionMessage;
+    AndroidElement msgPermission;
 
     @FindBy(id = "com.android.packageinstaller:id/permission_allow_button")
-    AndroidElement allowButton;
+    AndroidElement btnAllow;
 
+    @FindBy(id = "com.geopronto.app.test.debug:id/open_menu_fab")
+    AndroidElement btnMenu;
 
+    @FindBy(id = "com.geopronto.app.test.debug:id/ongoing_events_fab")
+    AndroidElement btnOngoingEvents;
 
+    @FindBy(id = "com.geopronto.app.test.debug:id/search_node_fab")
+    AndroidElement btnInstallation;
 
 
     public MainScreen allowAccessLocation() {
       pause(5);
-        if(textInElementPresent(permissionMessage,
+        if(isTextInElementPresent(msgPermission,
                 "Allow Pronto App Android to access this device's location?", 3)) {
-             allowButton.click();
+             btnAllow.click();
           }
         return this;
     }
 
     public MainScreen allowPictures() {
         pause(5);
-        if(textInElementPresent(permissionMessage,
+        if(isTextInElementPresent(msgPermission,
                 "Allow Pronto App Android to take pictures and record video?", 3)) {
-            allowButton.click();
+            btnAllow.click();
         }
         return this;
     }
+
+    public MenuScreen clickMenuButton() {
+        btnMenu.click();
+        return new MenuScreen(driver);
+    }
+
+    public OngoingEventsScreen clickOngoingEventsButton() {
+        btnOngoingEvents.click();
+        return new OngoingEventsScreen(driver);
+    }
+
+    public SelectInstallationTaskScreen clickInstallationButton() {
+        btnInstallation.click();
+        return new SelectInstallationTaskScreen(driver);
+    }
+
+
 }
