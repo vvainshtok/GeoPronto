@@ -12,13 +12,16 @@ import screens.MainScreen;
 
 public class AcceptTaskTests extends AppiumConfig {
 
+    LoginScreen loginScreen;
+    MainScreen mainScreen;
+
     @BeforeMethod
     public void login() {
         UserDto user = UserDto.builder()
                 .email("mnt1")
                 .password("mnt1mnt1")
                 .build();
-        LoginScreen loginScreen = new LoginScreen(driver);
+        loginScreen = new LoginScreen(driver);
         loginScreen.typeLoginForm(user)
                 .clickLoginButtonSuccess()
                 .allowAccessLocation()
@@ -27,7 +30,7 @@ public class AcceptTaskTests extends AppiumConfig {
 
     @Test
     public void acceptNewTaskPositiveTest() {
-        MainScreen mainScreen = new MainScreen(driver);
+        mainScreen = new MainScreen(driver);
         Assert.assertTrue(mainScreen.clickMenuButton()
                 .clickReloadButton()
                 .clickOngoingEventsButton()

@@ -4,12 +4,14 @@ import config.AppiumConfig;
 import dto.UserDto;
 
 import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 import screens.LoginScreen;
 import screens.MainScreen;
 
 public class SmokeTests extends AppiumConfig {
+
+    LoginScreen loginScreen;
+    MainScreen mainScreen;
 
     @BeforeMethod
     public void login() {
@@ -17,28 +19,29 @@ public class SmokeTests extends AppiumConfig {
                 .email("mnt1")
                 .password("mnt1mnt1")
                 .build();
-        LoginScreen loginScreen = new LoginScreen(driver);
-        MainScreen mainScreen = loginScreen.typeLoginForm(user)
-                .clickLoginButtonSuccess();
-        mainScreen.allowAccessLocation()
-                .allowPictures();
-    }
-
-    @BeforeMethod
-    public void acceptNewTask() {
-        MainScreen mainScreen = new MainScreen(driver);
-        mainScreen.clickMenuButton()
+        loginScreen = new LoginScreen(driver);
+        mainScreen = new MainScreen(driver);
+        mainScreen =loginScreen.typeLoginForm(user)
+                .clickLoginButtonSuccess()
+                .allowAccessLocation()
+                .allowPictures()
+                .clickMenuButton()
                 .clickReloadButton()
                 .clickOngoingEventsButton()
                 .clickExpandCollapseButton()
                 .clickEvent()
-                .acceptFirstTimeSlot();
+                .acceptFirstTimeSlot();;
     }
+
 
     @Test
     public void smokeTest() {
-        MainScreen mainScreen = new MainScreen(driver);
-        mainScreen.clickInstallationButton();
+        // mainScreen = new MainScreen(driver);
+        mainScreen.clickInstallationButton()
+                .selectConfirmedTaskFirstTime()
+                .clickBtnStart()
+                .clickBtnSkip()
+                .selectStepContract();
 
     }
 
