@@ -1,7 +1,9 @@
 package screens;
 
 import io.appium.java_client.AppiumDriver;
+import io.appium.java_client.TouchAction;
 import io.appium.java_client.android.AndroidElement;
+import io.appium.java_client.touch.offset.PointOption;
 import org.openqa.selenium.support.FindBy;
 
 public class StepsListScreen extends BaseScreen {
@@ -37,35 +39,47 @@ public class StepsListScreen extends BaseScreen {
     AndroidElement stepFinish;
 
     public ContractScreen selectStepContract() {
-        stepContract.click();
+        clickWait(stepContract, 2);
         return new ContractScreen(driver);
     }
     public NetworkScreen selectStepNetwork() {
-        stepNetwork.click();
+        clickWait(stepNetwork, 2);
         return new NetworkScreen(driver);
     }
     public MACScreen selectStepMAC() {
-        stepMAC.click();
+        clickWait(stepMAC, 2);
         return new MACScreen(driver);
     }
     public TestScreen selectStepTest() {
-        stepTest.click();
+        TouchAction<?> action = new TouchAction<>(driver);
+        action.longPress(PointOption.point(stepMAC.getCenter().x, stepMAC.getCenter().y))
+                .moveTo(PointOption.point(stepContract.getCenter().x, stepContract.getCenter().y))
+                .release()
+                .perform();
+        
+        clickWait(stepTest, 2);
         return new TestScreen(driver);
     }
     public WiFiPropertiesScreen selectStepWiFiProperties() {
-        stepWiFiProperties.click();
+        clickWait(stepWiFiProperties, 2);
         return new WiFiPropertiesScreen(driver);
     }
     public MaterialsScreen selectStepMaterials() {
-        stepMaterials.click();
+        clickWait(stepMaterials, 2);
         return new MaterialsScreen(driver);
     }
     public PhotosScreen selectStepPhotos() {
-        stepPhotos.click();
+        clickWait(stepPhotos, 2);
         return new PhotosScreen(driver);
     }
     public FinishScreen selectStepFinish() {
-        stepFinish.click();
+        /* TouchAction touchAction = new TouchAction(driver);
+        touchAction.longPress(PointOption.point(stepMaterials.getCenter()))
+                .moveTo(PointOption.point(stepNetwork.getCenter()))
+                .release()
+                .perform();
+         */
+        clickWait(stepFinish, 20);
         return new FinishScreen(driver);
     }
 }

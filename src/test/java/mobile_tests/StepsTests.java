@@ -2,18 +2,15 @@ package mobile_tests;
 
 import config.AppiumConfig;
 import dto.UserDto;
-
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-import screens.LoginScreen;
-import screens.MainScreen;
-import screens.PhotosScreen;
-import screens.StepsListScreen;
+import screens.*;
 
-public class SmokeTests extends AppiumConfig {
+public class StepsTests extends AppiumConfig {
 
     LoginScreen loginScreen;
     MainScreen mainScreen;
+    SelectInstallationTaskScreen selectInstallationTaskScreen;
 
     @BeforeMethod
     public void login() {
@@ -26,21 +23,13 @@ public class SmokeTests extends AppiumConfig {
         mainScreen =loginScreen.typeLoginForm(user)
                 .clickLoginButtonSuccess()
                 .allowAccessLocation()
-                .allowPictures()
-                .clickMenuButton()
-                .clickReloadButton()
-                .clickOngoingEventsButton()
-                .clickExpandCollapseButton()
-                .clickEvent()
-                .acceptFirstTimeSlot();;
+                .allowPictures();
     }
 
     @Test
-    public void smokeTest() {
+    public void stepsPositiveTest() {
         mainScreen.clickInstallationButton()
-                .selectLastTask()
-                .clickBtnStart()
-                .clickBtnSkip()
+                .selectTaskNum(3)
                 .selectStepContract()
                 .uploadPhoto()
                 //.selectStepNetwork() // to comment if previous uncommented!
@@ -59,9 +48,5 @@ public class SmokeTests extends AppiumConfig {
         StepsListScreen stepsListScreen = new StepsListScreen(driver);
         stepsListScreen.selectStepFinish()
                 .finishTask();
-
-
     }
-
-
 }

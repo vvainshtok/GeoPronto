@@ -22,7 +22,7 @@ public class AcceptInstallationTaskScreen extends BaseScreen {
     AndroidElement btnReject;
 
     public MainScreen acceptFirstTimeSlot() {
-        btnTimeSlot1.click();
+       // btnTimeSlot1.click();
         btnAccept.click();
         return new MainScreen(driver);
 

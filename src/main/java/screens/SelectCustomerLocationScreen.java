@@ -13,6 +13,7 @@ public class SelectCustomerLocationScreen extends BaseScreen {
     AndroidElement btnSkip;
 
     public StepsListScreen clickBtnSkip() {
+        pause(3);
         btnSkip.click();
         return new StepsListScreen(driver);
     }
