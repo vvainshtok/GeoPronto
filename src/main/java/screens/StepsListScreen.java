@@ -79,7 +79,10 @@ public class StepsListScreen extends BaseScreen {
                 .release()
                 .perform();
          */
+        System.out.println("Now Finish step button will be clicked ");
+        pause(3);
         clickWait(stepFinish, 20);
+        System.out.println("Button Finish step is clicked...");
         return new FinishScreen(driver);
     }
 }

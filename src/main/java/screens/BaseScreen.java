@@ -31,7 +31,7 @@ public class BaseScreen {
             return new WebDriverWait(driver, time)
                     .until(ExpectedConditions.textToBePresentInElement(element, text));
         } catch (org.openqa.selenium.TimeoutException e) {
-            System.out.println("create exception");
+            System.out.println("Exception...");
             e.printStackTrace();
             return false;
         }

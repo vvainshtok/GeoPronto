@@ -22,6 +22,10 @@ public class ConfirmPage extends BasePage {
     WebElement btnNextDay;
 
     public void confirmTask() {
+
+        //driver.get(url);
+        pause(3);
+
         btnConfirm.click();
         btnNextDay.click();
         pause(2);

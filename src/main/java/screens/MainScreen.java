@@ -26,35 +26,36 @@ public class MainScreen extends BaseScreen {
 
 
     public MainScreen allowAccessLocation() {
-      pause(5);
+      pause(3);
         if(isTextInElementPresent(msgPermission,
-                "Allow Pronto App Android to access this device's location?", 3)) {
-             btnAllow.click();
+                "Allow Pronto App Android to access this device's location?", 1)) {
+             clickWait(btnAllow, 1);
           }
         return this;
     }
 
     public MainScreen allowPictures() {
-        pause(5);
+        pause(3);
         if(isTextInElementPresent(msgPermission,
-                "Allow Pronto App Android to take pictures and record video?", 3)) {
-            btnAllow.click();
+                "Allow Pronto App Android to take pictures and record video?", 1)) {
+            clickWait(btnAllow, 1);
         }
         return this;
     }
 
     public MenuScreen clickMenuButton() {
-        btnMenu.click();
+        clickWait(btnMenu, 2);
         return new MenuScreen(driver);
     }
 
     public OngoingEventsScreen clickOngoingEventsButton() {
-        btnOngoingEvents.click();
+        if(btnOngoingEvents.isDisplayed())
+            clickWait(btnOngoingEvents, 2);
         return new OngoingEventsScreen(driver);
     }
 
     public SelectInstallationTaskScreen clickInstallationButton() {
-        btnInstallation.click();
+        clickWait(btnInstallation, 3);
         return new SelectInstallationTaskScreen(driver);
     }
 

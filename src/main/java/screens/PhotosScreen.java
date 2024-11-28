@@ -89,6 +89,8 @@ public class PhotosScreen extends BaseScreen {
         System.out.println("Now upload button will be clicked...");
 
         clickWait(btnUploadPhotos, 5);
+        System.out.println("Upload button is clicked...");
+        pause(5);
         return new StepsListScreen(driver);
     }
 }

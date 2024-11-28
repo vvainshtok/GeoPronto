@@ -1,13 +1,8 @@
 package pages;
 
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.Keys;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.chrome.ChromeOptions;
-import org.openqa.selenium.interactions.Action;
-import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.pagefactory.AjaxElementLocatorFactory;
@@ -16,8 +11,6 @@ import java.awt.*;
 import java.awt.datatransfer.DataFlavor;
 import java.awt.datatransfer.UnsupportedFlavorException;
 import java.io.IOException;
-import java.sql.DriverManager;
-import java.util.Optional;
 
 public class InstallationPage extends BasePage {
 
@@ -33,7 +26,7 @@ public class InstallationPage extends BasePage {
     @FindBy(xpath = "//i[@class='v-icon notranslate mdi mdi-account-group theme--light']")
     WebElement btn3;
 
-    @FindBy(xpath = "//span[text()=' 20270681248 ']")
+    @FindBy(xpath = "//span[text()=' 20270681862 ']")
     WebElement generatedTask;
 
     @FindBy(xpath = "//button[@title = 'copy customer confirmation link']")
@@ -41,11 +34,18 @@ public class InstallationPage extends BasePage {
 
     String urlConfirm;
 
-    public ConfirmPage getTasksList() {
+    public String getUrlTask(int taskNum) {
+        pause(3);
         btn2.click();
+        pause(3);
         btn3.click();
-        generatedTask.click();
+        pause(3);
+        driver.findElement(By.xpath("//span[text()=' 2027068"
+                + taskNum + " ']")).click();
+
+        //generatedTask.click();
         btnWithUrl.click();
+        pause(3);
 
         try {
             urlConfirm = (String) Toolkit.getDefaultToolkit().getSystemClipboard()
@@ -55,11 +55,9 @@ public class InstallationPage extends BasePage {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-        driver.get(urlConfirm);
-
-
-
-        return new ConfirmPage(driver);
+        //driver.get(urlConfirm);
+        return urlConfirm;
+        //return new ConfirmPage(driver);
     }
 
 

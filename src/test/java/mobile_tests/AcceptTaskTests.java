@@ -1,5 +1,6 @@
 package mobile_tests;
 
+import api.ApiController;
 import config.AppiumConfig;
 import dto.UserDto;
 import io.appium.java_client.TouchAction;
@@ -10,10 +11,13 @@ import org.testng.annotations.Test;
 import screens.LoginScreen;
 import screens.MainScreen;
 
+import java.util.Random;
+
 public class AcceptTaskTests extends AppiumConfig {
 
     LoginScreen loginScreen;
     MainScreen mainScreen;
+    int taskNum;
 
     @BeforeMethod
     public void login() {
@@ -26,11 +30,12 @@ public class AcceptTaskTests extends AppiumConfig {
                 .clickLoginButtonSuccess()
                 .allowAccessLocation()
                 .allowPictures();
+
     }
 
     @Test
     public void acceptNewTaskPositiveTest() {
-        // mainScreen = new MainScreen(driver);
+        mainScreen = new MainScreen(driver);
         mainScreen.clickMenuButton()
                 .clickReloadButton()
                 .clickOngoingEventsButton()

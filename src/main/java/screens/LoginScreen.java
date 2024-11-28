@@ -18,13 +18,6 @@ public class LoginScreen extends BaseScreen{
     @FindBy(id = "com.geopronto.app.test.debug:id/login")
     AndroidElement btnLogin;
 
-
-
-
-
-
-
-
     public LoginScreen typeLoginForm(UserDto user) {
         inputEmail.sendKeys(user.getEmail());
         inputPassword.sendKeys(user.getPassword());
@@ -33,7 +26,7 @@ public class LoginScreen extends BaseScreen{
 
     public MainScreen clickLoginButtonSuccess() {
         btnLogin.click();
-        return  new MainScreen(driver);
+        return new MainScreen(driver);
     }
 
 

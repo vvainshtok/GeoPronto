@@ -25,9 +25,11 @@ public class LoginPage extends BasePage {
     WebElement btnLogin;
 
     public InstallationPage typeLoginForm() {
-        inputLogin.sendKeys(getProperty("data.properties", "login"));
-        inputPassword.sendKeys(getProperty("data.properties", "password"));
-        btnLogin.click();
+        if(inputLogin.isDisplayed()) {
+            inputLogin.sendKeys(getProperty("data.properties", "login"));
+            inputPassword.sendKeys(getProperty("data.properties", "password"));
+            btnLogin.click();
+        }
         return new InstallationPage(driver);
     }
 }
